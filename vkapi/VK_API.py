@@ -17,7 +17,7 @@ class VK_API(object):
         vk_session.auth()
         return vk_session.token['access_token']
 
-    def get_sex_and_followers_count_and_userId(self):
+    def get_sex_and_followers_count_and_user_id(self):
         profile_info_url = BASE_VK_URL + "users.get"
         user_info_response = requests.get(profile_info_url, params={
             'access_token': token,
