@@ -32,6 +32,8 @@ dataframe['E'] = -1
 dataframe['A'] = -1
 dataframe['N'] = -1
 for i in range(len(answer_urls)):
+    if not answer_urls[i].split('://')[0].startswith('http'):
+        answer_urls[i] = 'https://' + answer_urls[i]
     html = get_html(answer_urls[i])
     scores = get_scores(html.text)
     dataframe['O'][i] = scores[4]
