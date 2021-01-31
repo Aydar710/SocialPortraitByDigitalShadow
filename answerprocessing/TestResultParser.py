@@ -16,7 +16,7 @@ def get_html(url):
 
 def get_scores(html):
     soup = BeautifulSoup(html, 'html.parser')
-    items = soup.find_all('td', class_='resScaleVal')
+    items = soup.find_all('td', class_='nisVal')
     scores = []
     for item in items:
         scores.append(item.text)
