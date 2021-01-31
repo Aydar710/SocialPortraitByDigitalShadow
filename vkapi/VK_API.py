@@ -23,12 +23,16 @@ class VK_API(object):
             'access_token': token,
             'v': api_version,
             'user_ids': self.screen_name,
-            'fields': 'sex, followers_count, personal'
+            'fields': 'sex, followers_count'
         }).json()['response'][0]
 
         # print(user_info_response)
         sex = user_info_response['sex']
-        followers_count = user_info_response['followers_count']
+        try:
+            followers_count = user_info_response['followers_count']
+        except Exception:
+            print('followers count is not available')
+            followers_count = -1
         user_id = user_info_response['id']
         return sex, followers_count, user_id
 

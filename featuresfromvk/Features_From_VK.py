@@ -5,7 +5,7 @@ from vkapi.VK_API import VK_API
 vk_api = VK_API('aydarrr')
 
 answers_frame = pandas.read_csv('../answerprocessing/answers.csv', delimiter=',')
-vk_pages = answers_frame['Ссылка на страницу ВК'].values
+vk_pages = answers_frame['Ссылка на страницу ВК         '].values
 
 answers_frame['sex'] = -1
 answers_frame['followers count'] = -1
