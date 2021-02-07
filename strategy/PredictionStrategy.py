@@ -16,5 +16,5 @@ class PredictionStrategy(ABC):
         self.y_n = dataset[:, 7].astype(float)
 
     @abstractmethod
-    def predict_classes(self, X) -> map:
+    def predict_classes(self, x) -> map:
         pass

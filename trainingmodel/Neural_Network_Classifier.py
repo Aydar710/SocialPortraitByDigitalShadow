@@ -28,19 +28,12 @@ X = numpy.asarray(X).astype(numpy.float32)
 y_o = numpy.asarray(y_o).astype(numpy.float32)
 
 
-# load dataset
-# dataframe = pandas.read_csv("iris.csv", header=None)
-# dataset = dataframe.values
-# X = dataset[:, 0:4].astype(float)
-# Y = dataset[:, 4]
-
-
 # define baseline model
 def baseline_model():
     # create model
     model = Sequential()
     model.add(Dense(8, input_dim=5, activation='relu'))
-    model.add(Dense(2, activation='softmax'))
+    model.add(Dense(3, activation='softmax'))
     # Compile model
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
