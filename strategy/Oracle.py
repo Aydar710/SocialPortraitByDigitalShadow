@@ -14,6 +14,5 @@ class Oracle:
     def strategy(self, strategy: PredictionStrategy) -> None:
         self._strategy = strategy
 
-    def predict_classes(self, X):
-        print("predicting")
-        self._strategy.predict_classes(X)
+    def predict_classes(self, X) -> map:
+        return self._strategy.predict_classes(X)

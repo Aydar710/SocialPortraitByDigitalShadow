@@ -3,8 +3,8 @@ from strategy.Oracle import Oracle
 from strategy.RandomForestStrategy import RandomForestStrategy
 
 random_forest = RandomForestStrategy()
-MLP_strategy = MLPStrategy()
-oracle = Oracle(random_forest)
-oracle.predict_classes("")
-oracle.strategy = MLP_strategy
-oracle.predict_classes("")
+mlp_strategy = MLPStrategy()
+oracle = Oracle(mlp_strategy)
+
+predictions = oracle.predict_classes([1, 401, 220, 43, 3])
+print(predictions)
