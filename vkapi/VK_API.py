@@ -1,6 +1,8 @@
 import vk_api
 import requests
 
+from humandetection.HumanCounter import HumanCounter
+
 api_version = "5.126"
 token = 'f047c883f6419bdf4fa39be425dc7a2c9c3ff6e07226d5386467f11d83f3fe961cd1c40f99f31f844aeb5'
 BASE_VK_URL = 'https://api.vk.com/method/'
@@ -8,8 +10,9 @@ BASE_VK_URL = 'https://api.vk.com/method/'
 
 class VK_API(object):
 
-    def __init__(self, screen_name = 'aydarr'):
+    def __init__(self, screen_name='id_sveta1999'):
         self.screen_name = screen_name
+        self.human_counter = HumanCounter()
 
     # returns access_token
     def authorize(self):
@@ -75,3 +78,31 @@ class VK_API(object):
         }).json()['response']
 
         return photos_response['count']
+
+    def get_user_photos_in_company_count(self) -> int:
+        profile_info_url = BASE_VK_URL + "users.get"
+        photos_url = BASE_VK_URL + "photos.getAll"
+        user_info_response = requests.get(profile_info_url, params={
+            'access_token': token,
+            'v': api_version,
+            'user_ids': self.screen_name,
+        }).json()['response'][0]
+
+        user_id = user_info_response['id']
+
+        photo_items = requests.get(photos_url, params={
+            'access_token': token,
+            'v': api_version,
+            'owner_id': user_id,
+        }).json()['response']['items']
+
+        user_photos_in_company_count = 0
+        for photo_item in photo_items:
+            print("photo_item ", photo_item)
+            # photo_url = photo_item['sizes'][len(photo_item['sizes']) // 2]['url']
+            photo_url = photo_item['sizes'][-1]['url']
+            print("photo url", photo_url)
+            if self.human_counter.has_more_than_one_person(photo_url):
+                user_photos_in_company_count += 1
+
+        return user_photos_in_company_count
