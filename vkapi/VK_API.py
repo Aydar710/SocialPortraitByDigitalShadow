@@ -8,7 +8,7 @@ BASE_VK_URL = 'https://api.vk.com/method/'
 
 class VK_API(object):
 
-    def __init__(self, screen_name):
+    def __init__(self, screen_name = 'aydarr'):
         self.screen_name = screen_name
 
     # returns access_token

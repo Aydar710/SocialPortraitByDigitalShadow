@@ -28,13 +28,3 @@ for i in range(len(answers_frame['N'])):
 
 answers_frame.to_csv('../answerprocessing/answers.csv', index=False)
 
-#####
-
-dataset = answers_frame.values
-X = dataset[:, 8:]
-y_o = dataset[:, 3]
-y_c = dataset[:, 4]
-y_e = dataset[:, 5]
-y_a = dataset[:, 6]
-y_n = dataset[:, 7]
-print(y_n)

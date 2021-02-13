@@ -9,7 +9,7 @@ from strategy.PredictionStrategy import PredictionStrategy
 class NeuralNetworkStrategy(PredictionStrategy):
 
     # define baseline model
-    def baseline_model(self, output_neurons : int):
+    def baseline_model(self, output_neurons: int):
         # create model
         model = Sequential()
         model.add(Dense(8, input_dim=5, activation='relu'))
@@ -28,11 +28,12 @@ class NeuralNetworkStrategy(PredictionStrategy):
             # convert integers to dummy variables (i.e. one hot encoded)
             dummy_y = np_utils.to_categorical(encoded_Y)
 
-            model = self.baseline_model(len(dummy_y[0]))
+            model = self.baseline_model(output_neurons=len(dummy_y[0]))
 
             # fit the keras model on the dataset
             model.fit(self.X, dummy_y, epochs=100, batch_size=4)
-            prediction = model.predict_classes(x)
+            prediction = model.predict_classes([x])
             predictions.append(prediction)
 
-        return {'O': predictions[0], 'C': predictions[1], 'E': predictions[2], 'A': predictions[3], 'N': predictions[4]}
+        return {'O': predictions[0][0], 'C': predictions[1][0], 'E': predictions[2][0], 'A': predictions[3][0],
+                'N': predictions[4][0]}

@@ -24,6 +24,7 @@ class RandomForestStrategy(PredictionStrategy):
             prediction = classifier.predict([x])
             predictions.append(prediction)
 
-        return {'O': predictions[0], 'C': predictions[1], 'E': predictions[2], 'A': predictions[3], 'N': predictions[4]}
+        return {'O': predictions[0][0], 'C': predictions[1][0], 'E': predictions[2][0], 'A': predictions[3][0],
+                'N': predictions[4][0]}
 
     # TODO: create method to get metrics
