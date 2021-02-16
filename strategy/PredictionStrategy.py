@@ -18,3 +18,7 @@ class PredictionStrategy(ABC):
     @abstractmethod
     def predict_classes(self, x) -> map:
         pass
+
+    @abstractmethod
+    def get_strategy_name(self):
+        pass

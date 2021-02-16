@@ -30,12 +30,17 @@ class Predictor:
         friends_count = self.vk_api.get_friends_count(user_id)
         video_count = self.vk_api.get_video_count(user_id)
         profile_photos_count = self.vk_api.get_profile_photos_count(user_id)
+        photos_in_company_count = self.vk_api.get_user_photos_in_company_count()
+        # TODO: uncomment
+        # photos_in_company_count = 2
 
-        print(sex, followers_count, friends_count, video_count, profile_photos_count)
+        print(sex, followers_count, friends_count, video_count, profile_photos_count, photos_in_company_count)
 
         prediction: map = self.oracle.predict_classes(
-            [sex, followers_count, friends_count, video_count, profile_photos_count])
+            [sex, followers_count, friends_count, video_count, profile_photos_count, photos_in_company_count])
 
+        print("=" * 10)
+        print("Результаты анализа " + self.oracle.get_strategy_name())
         print("Открытость к опыту: " + str(self.convert_class_to_value(prediction['O'])) + "\n" +
               "Добросовестность: " + str(self.convert_class_to_value(prediction['C'])) + "\n" +
               "Экстраверсия: " + str(self.convert_class_to_value(prediction['E'])) + "\n" +

@@ -18,8 +18,6 @@ class HumanCounter:
         self.detector.loadModel()
 
     def has_more_than_one_person(self, image_url: str) -> bool:
-        if image_url == "https://sun9-37.userapi.com/impf/c856128/v856128282/20ba5a/9Q-4YnaYSTI.jpg?size=54x75&quality=96&sign=37cf9a0c5a04acda8434e12ac9809a5b&c_uniq_tag=Tvgn1X5yoXgBDha6wSiYxypjvgrlKtY5UjAg0q5QdW4&type=album":
-            print()
         photo = requests.get(image_url).content
 
         file = open(PHOTO_PATH, "wb")

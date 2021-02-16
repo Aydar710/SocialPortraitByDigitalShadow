@@ -27,4 +27,7 @@ class RandomForestStrategy(PredictionStrategy):
         return {'O': predictions[0][0], 'C': predictions[1][0], 'E': predictions[2][0], 'A': predictions[3][0],
                 'N': predictions[4][0]}
 
+    def get_strategy_name(self):
+        return "Random Forest"
+
     # TODO: create method to get metrics

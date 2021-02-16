@@ -16,3 +16,6 @@ class Oracle:
 
     def predict_classes(self, X) -> map:
         return self._strategy.predict_classes(X)
+
+    def get_strategy_name(self):
+        return self._strategy.get_strategy_name()

@@ -98,7 +98,6 @@ class VK_API(object):
 
         user_photos_in_company_count = 0
         for photo_item in photo_items:
-            print("photo_item ", photo_item)
             # photo_url = photo_item['sizes'][len(photo_item['sizes']) // 2]['url']
             photo_url = photo_item['sizes'][-1]['url']
             print("photo url", photo_url)

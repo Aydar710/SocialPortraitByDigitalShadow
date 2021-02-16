@@ -12,7 +12,7 @@ class NeuralNetworkStrategy(PredictionStrategy):
     def baseline_model(self, output_neurons: int):
         # create model
         model = Sequential()
-        model.add(Dense(8, input_dim=5, activation='relu'))
+        model.add(Dense(8, input_dim=len(self.X[0]), activation='relu'))
         model.add(Dense(output_neurons, activation='softmax'))
         # Compile model
         model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -37,3 +37,6 @@ class NeuralNetworkStrategy(PredictionStrategy):
 
         return {'O': predictions[0][0], 'C': predictions[1][0], 'E': predictions[2][0], 'A': predictions[3][0],
                 'N': predictions[4][0]}
+
+    def get_strategy_name(self):
+        return "Neural Network"
