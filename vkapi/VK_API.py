@@ -1,5 +1,6 @@
 import vk_api
 import requests
+import time
 
 from humandetection.HumanCounter import HumanCounter
 
@@ -105,3 +106,35 @@ class VK_API(object):
                 user_photos_in_company_count += 1
 
         return user_photos_in_company_count
+
+    def get_wall_posts_count_for_last_6_months(self) -> int:
+        self.screen_name = 'nursabir'
+        wall_get_url = BASE_VK_URL + "wall.get"
+
+        posts_are_not_empty_or_reached_6_months: bool = False
+        posts_count: int = 0
+        current_page = 0
+        posts_in_page = 100
+        while not posts_are_not_empty_or_reached_6_months:
+            posts = requests.get(wall_get_url, params={
+                'access_token': token,
+                'v': api_version,
+                'domain': self.screen_name,
+                'count': posts_in_page,
+                'offset': current_page * posts_in_page,
+                'filter': 'owner'
+            }).json()['response']['items']
+
+            if len(posts) == 0:
+                break
+
+            millis_after_six_months = (time.time() * 1000) + (6 * 30 * 24 * 60 * 60 * 1000)
+            for post in posts:
+                post_date = post['date']
+                if post_date < millis_after_six_months:
+                    posts_count += 1
+                else:
+                    break
+
+            current_page += 1
+        print(posts_count)

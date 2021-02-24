@@ -12,5 +12,5 @@ sex, followers_count, user_id = vk_api.get_sex_and_followers_count_and_user_id()
 # video_count = vk_api.get_video_count(user_id)
 # print(video_count)
 
-profile_photos_count = vk_api.get_profile_photos_count(user_id)
-print(profile_photos_count)
+# profile_photos_count = vk_api.get_profile_photos_count(user_id)
+# print(profile_photos_count)
