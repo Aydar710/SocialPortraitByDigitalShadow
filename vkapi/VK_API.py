@@ -11,7 +11,7 @@ BASE_VK_URL = 'https://api.vk.com/method/'
 
 class VK_API(object):
 
-    def __init__(self, screen_name='id_sveta1999'):
+    def __init__(self, screen_name):
         self.screen_name = screen_name
         self.human_counter = HumanCounter()
 
@@ -108,7 +108,6 @@ class VK_API(object):
         return user_photos_in_company_count
 
     def get_wall_posts_count_for_last_6_months(self) -> int:
-        self.screen_name = 'nursabir'
         wall_get_url = BASE_VK_URL + "wall.get"
 
         posts_are_not_empty_or_reached_6_months: bool = False
@@ -137,4 +136,4 @@ class VK_API(object):
                     break
 
             current_page += 1
-        print(posts_count)
+        return posts_count
