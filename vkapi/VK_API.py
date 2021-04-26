@@ -17,7 +17,7 @@ class VK_API(object):
 
     # returns access_token
     def authorize(self):
-        vk_session = vk_api.VkApi('aydar710@gmail.com', 'ayd148868')
+        vk_session = vk_api.VkApi('aydar710@gmail.com', 'some pass')
         vk_session.auth()
         return vk_session.token['access_token']
 

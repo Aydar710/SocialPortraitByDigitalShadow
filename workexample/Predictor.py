@@ -8,7 +8,7 @@ from vkapi.VK_API import VK_API
 class Predictor:
 
     def __init__(self):
-        self.vk_api = VK_API()
+        self.vk_api = VK_API("nursabir")
         self.oracle = Oracle(MultinomialLogisticRegressionStrategy())
 
     def set_strategy(self, strategy: PredictionStrategy):
@@ -31,13 +31,14 @@ class Predictor:
         video_count = self.vk_api.get_video_count(user_id)
         profile_photos_count = self.vk_api.get_profile_photos_count(user_id)
         photos_in_company_count = self.vk_api.get_user_photos_in_company_count()
-        # TODO: uncomment
-        # photos_in_company_count = 2
+        posts_count_for_last_6_months = self.vk_api.get_wall_posts_count_for_last_6_months()
 
-        print(sex, followers_count, friends_count, video_count, profile_photos_count, photos_in_company_count)
+        print(sex, followers_count, friends_count, video_count, profile_photos_count, photos_in_company_count,
+              posts_count_for_last_6_months)
 
         prediction: map = self.oracle.predict_classes(
-            [sex, followers_count, friends_count, video_count, profile_photos_count, photos_in_company_count])
+            [sex, followers_count, friends_count, video_count, profile_photos_count, photos_in_company_count,
+             posts_count_for_last_6_months])
 
         print("=" * 10)
         print("Результаты анализа " + self.oracle.get_strategy_name())
