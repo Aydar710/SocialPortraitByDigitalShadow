@@ -1,4 +1,5 @@
 from keras.utils import np_utils
+from sklearn.metrics import classification_report, accuracy_score
 from sklearn.preprocessing import LabelEncoder
 from tensorflow.python.keras import Sequential
 from tensorflow.python.keras.layers import Dense
@@ -40,3 +41,27 @@ class NeuralNetworkStrategy(PredictionStrategy):
 
     def get_strategy_name(self):
         return "Neural Network"
+
+    def print_metrics_for(self, y):
+        encoder = LabelEncoder()
+        encoder.fit(y)
+        encoded_Y = encoder.transform(y)
+        dummy_y = np_utils.to_categorical(encoded_Y)
+        model = self.baseline_model(output_neurons=len(dummy_y[0]))
+
+        model.fit(self.X, dummy_y, epochs=100, batch_size=4)
+        predictions = model.predict_classes(self.X)
+        report = classification_report(y, predictions)
+        print(report)
+
+    def print_metrics(self):
+        print("Metrics O")
+        self.print_metrics_for(self.y_o)
+        print("Metrics C")
+        self.print_metrics_for(self.y_c)
+        print("Metrics E")
+        self.print_metrics_for(self.y_e)
+        print("Metrics A")
+        self.print_metrics_for(self.y_a)
+        print("Metrics N")
+        self.print_metrics_for(self.y_n)

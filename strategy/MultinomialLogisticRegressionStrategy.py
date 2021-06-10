@@ -5,6 +5,7 @@ from numpy import std, mean
 from sklearn.datasets import make_classification
 # define dataset
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
 from sklearn.model_selection import RepeatedStratifiedKFold, cross_val_score
 
 from strategy.PredictionStrategy import PredictionStrategy
@@ -39,3 +40,22 @@ class MultinomialLogisticRegressionStrategy(PredictionStrategy):
 
     def get_strategy_name(self):
         return "Multinomial Logistic Regression"
+
+    def print_metrics_for(self, y):
+        model = LogisticRegression(multi_class='multinomial', solver='lbfgs', penalty='l2', C=1.0, max_iter=100000)
+        model.fit(self.X, y)
+        predictions = model.predict(self.X)
+        report = classification_report(y, predictions)
+        print(report)
+
+    def print_metrics(self):
+        print("Metrics O")
+        self.print_metrics_for(self.y_o)
+        print("Metrics C")
+        self.print_metrics_for(self.y_c)
+        print("Metrics E")
+        self.print_metrics_for(self.y_e)
+        print("Metrics A")
+        self.print_metrics_for(self.y_a)
+        print("Metrics N")
+        self.print_metrics_for(self.y_n)

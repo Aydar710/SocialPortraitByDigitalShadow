@@ -5,7 +5,7 @@ import time
 from humandetection.HumanCounter import HumanCounter
 
 api_version = "5.126"
-token = 'f047c883f6419bdf4fa39be425dc7a2c9c3ff6e07226d5386467f11d83f3fe961cd1c40f99f31f844aeb5'
+token = '7a8283f4122a63620439ab48b81dd668af90ebf3164bcc4ca6b4cfb0a4103d50069565e18bdf24b0fd577'
 BASE_VK_URL = 'https://api.vk.com/method/'
 
 
@@ -17,7 +17,7 @@ class VK_API(object):
 
     # returns access_token
     def authorize(self):
-        vk_session = vk_api.VkApi('aydar710@gmail.com', 'some pass')
+        vk_session = vk_api.VkApi('aydar710@gmail.com', 'idarstack14886868')
         vk_session.auth()
         return vk_session.token['access_token']
 

@@ -1,6 +1,5 @@
 import requests
 from imageai.Detection import ObjectDetection
-import os
 
 PHOTO_PATH = "/home/aydar/PycharmProjects/SocialPortraitByDigitalShadow/humandetection/downloaded.jpg"
 RECOGNIZED_PHOTO_PATH = "/home/aydar/PycharmProjects/SocialPortraitByDigitalShadow/humandetection/recognized.jpg"

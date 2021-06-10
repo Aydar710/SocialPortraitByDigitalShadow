@@ -45,5 +45,5 @@ predictions = classifier_o.predict(X)
 accuracy = accuracy_score(y_o, predictions)
 print('accuracy: ', accuracy)
 
-classification_report = classification_report(y_o, predictions)
-print(classification_report)
+classification_rep = classification_report(y_o, predictions)
+print(classification_rep)
