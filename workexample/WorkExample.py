@@ -39,4 +39,4 @@ def predict(id):
     logistic_regression(id)
 
 
-
+neural_network("ohlobistin")
